@@ -18,8 +18,8 @@ function count_neighbors(grid::Matrix{Bool}, i::Int, j::Int)::Int
         [(-2 + i + size(grid, 1)) % size(grid, 1) + 1, (-2 + j + size(grid, 2)) % size(grid, 2) + 1],
         [1 + i % size(grid, 1), (-2 + j + size(grid, 2)) % size(grid, 2) + 1],
         [(-2 + i + size(grid, 1)) % size(grid, 1) + 1, 1 + j % size(grid, 2)]]
-    @simd for neighbor ∈ Neighbors
-        @inbounds count += grid[neighbor...] # modulo to handle edge cases
+    @inbounds @simd for neighbor ∈ Neighbors
+        count += grid[neighbor...] # modulo to handle edge cases
     end
 
     # Alternative implementation using array comprehension:
@@ -30,16 +30,16 @@ end
 
 function update_grid(grid::Matrix{Bool})::Matrix{Bool}
     new_grid = deepcopy(grid)
-    @simd for i ∈ 1:size(grid, 1)
-        @simd for j ∈ 1:size(grid, 2)
+    @inbounds @simd for i ∈ 1:size(grid, 1)
+        for j ∈ 1:size(grid, 2)
             neighbors = count_neighbors(grid, i, j)
-            if @inbounds grid[i, j]
+            if grid[i, j]
                 if neighbors < 2 || neighbors > 3
-                    @inbounds new_grid[i, j] = false
+                    new_grid[i, j] = false
                 end
             else
                 if neighbors == 3
-                    @inbounds new_grid[i, j] = true
+                    new_grid[i, j] = true
                 end
             end
         end
@@ -47,7 +47,7 @@ function update_grid(grid::Matrix{Bool})::Matrix{Bool}
 
     # Alternative implementation using CartesianIndices iterating and Tuple destructuring:
 
-    # @simd for index ∈ CartesianIndices(grid)
+    # @inbounds @simd for index ∈ CartesianIndices(grid)
     #     i, j = Tuple(index)
     #     neighbors = count_neighbors(grid, i, j)
     #     if grid[i, j]
