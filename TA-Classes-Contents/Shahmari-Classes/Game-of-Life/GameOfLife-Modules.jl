@@ -68,7 +68,7 @@ end
     grid = initialize_grid(rows, cols, dens)
     anim = Animation()    
     for step ∈ 1:steps
-        heatmap(grid', c=cgrad([:white, :green]), title="Step: $step", axis=nothing, grid=false, legend=false,frame=:none, ratio=1, size=(500, 500))
+        heatmap(grid', c=cgrad([:white, :black]), axis=nothing, grid=false, legend=false,frame=:none, ratio=1, size=(500, 500))
         frame(anim)
         grid = update_grid(grid)
     end
