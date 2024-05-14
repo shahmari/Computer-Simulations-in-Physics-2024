@@ -20,7 +20,7 @@ where $f(t, y)$ is a given function of $t$ and $y$.
 Euler's method is the simplest numerical method for solving ordinary differential equations (ODEs).
 
 **Algorithm:**
-1. Start at the initial condition \((t_0, y_0)\).
+1. Start at the initial condition $(t_0, y_0)$.
 2. Use the formula $y_{n+1} = y_n + h \cdot f(t_n, y_n)$ to find $y_{n+1}$.
 3. Increment $t_n$ by the step size $h$: $t_{n+1} = t_n + h$.
 4. Repeat steps 2 and 3 for the desired number of steps or until the end of the interval.
