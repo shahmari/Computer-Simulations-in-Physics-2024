@@ -177,7 +177,7 @@ Multistep methods use multiple past points to estimate the future values, making
 **Algorithm (for a 2-step Adams-Bashforth method):**
 1. Use an initial method (like RK4) to compute the first few values.
 2. For subsequent steps, use:
-   \[ y_{n+1} = y_n + \frac{h}{2} (3f(t_n, y_n) - f(t_{n-1}, y_{n-1})) \]
+   $y_{n+1} = y_n + \frac{h}{2} (3f(t_n, y_n) - f(t_{n-1}, y_{n-1}))$
 3. Increment $t_n$ by $h$: $t_{n+1} = t_n + h$.
 4. Repeat for the desired number of steps or until the end of the interval.
 
