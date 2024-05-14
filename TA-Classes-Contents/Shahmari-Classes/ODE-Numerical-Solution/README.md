@@ -216,4 +216,4 @@ Multistep methods use multiple past points to estimate the future values, making
        +-----------------------+
 ```
 
-In `Python-Tutorial.md` and `Julia-Tutorial.md` you'll see some short tutorials on how to implement these methods in Python and Julia, respectively.
+In `Python-Tutorial.md`, `Julia-Tutorial.md`, and `Julia-Tutorial-Extended.md`, you'll see some short tutorials on how to implement these methods in Python and Julia, respectively.
